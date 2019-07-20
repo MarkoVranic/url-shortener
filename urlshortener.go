@@ -65,6 +65,8 @@ func CreateShortLinkEndpoint(w http.ResponseWriter, req *http.Request) {
 	reply := Reply{url.OriginalLink, shortLink}
 
 	js, err := json.Marshal(reply)
+        
+	w.WriteHeader(http.StatusOK)
 	w.Header().Set("Content-Type", "application/json")
 	w.Write(js)
 
