@@ -1,0 +1,22 @@
+version: "3"
+
+services:
+  app:
+    image: mvranic1983/go-att:latest
+    volumes:
+      - .:/go/src/att
+    working_dir: /go/src/att
+    command: go run urlshortener.go
+    links:
+      - redis
+    environment:
+      REDIS_URL: redis:6379
+    expose:
+      - "80" 
+    ports:
+     - 80:80
+  redis:
+    image: redis:alpine
+    expose:
+      - "6379"
+  
